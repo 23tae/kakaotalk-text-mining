@@ -7,7 +7,7 @@ def preprocess(df) -> list:
 
   tokenized_conversations = [word_tokenize(message) for message in conversation_data]
 
-  stop_words = set(stopwords.words('english'))  # You may need to adjust the language
+  stop_words = set(stopwords.words('english'))
   filtered_conversations = [
       [word.lower() for word in message if word.isalnum() and word.lower() not in stop_words]
       for message in tokenized_conversations
