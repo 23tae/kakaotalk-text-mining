@@ -2,7 +2,7 @@
 
 # Usage
 
-1. 가상환경 설치
+1. 가상환경 생성
 
 ```shell
 python3 -m venv venv
