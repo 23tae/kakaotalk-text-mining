@@ -9,20 +9,36 @@
 
 1. 가상환경 생성
 
+- macOS
+
 ```shell
 python3 -m venv venv
 ```
 
+- Windows
+
+```shell
+python -m venv venv
+```
+
 2. 가상환경 활성화
+
+- macOS
 
 ```shell
 source ./venv/bin/activate
 ```
 
+- Windows
+
+```shell
+.\venv\Scripts\activate.bat
+```
+
 3. 패키지 설치
 
 ```shell
-python3 -m pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 4. pc 카카오톡에서 대화기록을 `.csv`로 저장
