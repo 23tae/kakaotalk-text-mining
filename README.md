@@ -1,6 +1,11 @@
 # KakaoTalk Text Mining
 
-# Usage
+# Description
+
+카카오톡 대화내용을 텍스트 마이닝 하여 시각화하는 프로그램입니다.  
+메시지 길이의 통계와 워드 클라우드를 이미지로 저장합니다.
+
+# Prerequisite
 
 1. 가상환경 생성
 
@@ -20,9 +25,11 @@ source ./venv/bin/activate
 python3 -m pip install -r requirements.txt
 ```
 
-4. pc 카카오톡에서 대화기록을 csv로 저장
+4. pc 카카오톡에서 대화기록을 `.csv`로 저장
 
-5. 실행 (경로명은 csv파일의 경로로 입력)
+# Usage
+
+- 프로그램 실행 (`file_path`: `.csv` 파일 경로)
 
 ```shell
 python3 main.py <file_path>
