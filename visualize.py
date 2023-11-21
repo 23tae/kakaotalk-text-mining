@@ -8,8 +8,8 @@ def visualize_length(filtered_conversations):
   plt.xlabel('Message Length')
   plt.ylabel('Frequency')
   plt.title('Distribution of Message Lengths')
-  plt.show()
   plt.savefig('./result/length_result.png')
+  plt.show()
 
 def visualize_wordcloud(filtered_conversations):
   all_words = [word for message in filtered_conversations for word in message]
@@ -21,5 +21,5 @@ def visualize_wordcloud(filtered_conversations):
   plt.figure(figsize=(10, 5))
   plt.imshow(wordcloud, interpolation='bilinear')
   plt.axis('off')
-  plt.show()
   plt.savefig('./result/wordcloud_result.png')
+  plt.show()
