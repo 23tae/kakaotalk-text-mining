@@ -1,34 +1,16 @@
 import sys
-import os
 
+from check_validity import check_file_and_directory
 from prerequisite import prerequisite
 from preprocess import preprocess
 from visualize import visualize_length, visualize_wordcloud
 
 output_dir = './result'
 
-def create_dir_if_not_exists(dir_path):
-  if not os.path.exists(dir_path):
-    os.makedirs(dir_path)
-
-def get_filename(file_path):
-  dirname, basename = os.path.split(file_path)
-  name, ext = os.path.splitext(basename)
-  return name
-
-def get_output_path_without_ext(input_path):
-  filename = get_filename(input_path)
-  return os.path.join(output_dir, filename)
-
 def main(path: str):
-    try:
-       os.path.isfile(path)
-    except:
-        raise Exception('File not found')
+    output_path = check_file_and_directory(path, output_dir)
     df = prerequisite(path)
     filtered_conversations = preprocess(df)
-    output_path = get_output_path_without_ext(path)
-    create_dir_if_not_exists(output_dir)
     visualize_length(filtered_conversations, output_path)
     visualize_wordcloud(filtered_conversations, output_path)
 
