@@ -1,9 +1,15 @@
 import sys
+import os
 
 from prerequisite import prerequisite
 from preprocess import preprocess
 from visualize import visualize_length, visualize_wordcloud
-import os
+
+output_dir = './result'
+
+def create_dir_if_not_exists(dir_path):
+  if not os.path.exists(dir_path):
+    os.makedirs(dir_path)
 
 def get_filename(file_path):
   dirname, basename = os.path.split(file_path)
@@ -12,7 +18,7 @@ def get_filename(file_path):
 
 def get_output_path_without_ext(input_path):
   filename = get_filename(input_path)
-  return os.path.join('./result', filename)
+  return os.path.join(output_dir, filename)
 
 def main(path: str):
     try:
@@ -22,6 +28,7 @@ def main(path: str):
     df = prerequisite(path)
     filtered_conversations = preprocess(df)
     output_path = get_output_path_without_ext(path)
+    create_dir_if_not_exists(output_dir)
     visualize_length(filtered_conversations, output_path)
     visualize_wordcloud(filtered_conversations, output_path)
 
