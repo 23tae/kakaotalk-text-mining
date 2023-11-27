@@ -3,11 +3,11 @@ from nltk import download, data
 
 
 def prerequisite(file_path: str) -> pd.DataFrame:
-    if not data.find('tokenizers/punkt'):
-        download('punkt')
+    try: data.find('tokenizers/punkt')
+    except: download('punkt', download_dir='./venv/nltk_data')
 
-    if not data.find('corpora/stopwords'):
-        download('stopwords')
+    try: data.find('corpora/stopwords')
+    except: download('stopwords', download_dir='./venv/nltk_data')
 
     df = pd.read_csv(file_path)
     return df
