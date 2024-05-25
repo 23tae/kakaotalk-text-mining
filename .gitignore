@@ -1,8 +1,7 @@
 .DS_Store
 
-.env
-venv/
-
-# data
-result/
-data/
+# directory
+.venv
+result
+data
+__pycache__
