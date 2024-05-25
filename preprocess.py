@@ -1,25 +1,20 @@
-from nltk.tokenize import word_tokenize
-from nltk.stem import PorterStemmer
+import re
+from konlpy.tag import Okt
+from collections import Counter
 
 
-def preprocess(df) -> list:
-    conversation_data = df['Message'].astype(str)
+def text_cleaning(text):
+    hangul = re.compile('[^ ㄱ-ㅣ가-힣]+')
+    result = hangul.sub('', text)
+    return result
 
-    tokenized_conversations = [word_tokenize(
-        message) for message in conversation_data]
 
-    stop_words = set(line.strip() for line in open('./korean_stopwords.txt'))
-    filtered_conversations = [
-        [word for word in message if word not in stop_words]
-        for message in tokenized_conversations
-    ]
+def preprocess(df) -> Counter:
+    df['Message'] = df['Message'].apply(lambda x: text_cleaning(x))
+    message_corpus = ''.join(df['Message'])
 
-    stemmer = PorterStemmer()
-    stemmed_conversations = [
-        [stemmer.stem(word) for word in message]
-        for message in filtered_conversations
-    ]
+    tagger = Okt()
+    message_nouns = tagger.nouns(message_corpus)
+    word_count = Counter(message_nouns)
 
-    df['Processed_Message'] = [' '.join(message)
-                               for message in stemmed_conversations]
-    return filtered_conversations
+    return word_count
